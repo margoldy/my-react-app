@@ -1,0 +1,323 @@
+/* Базовые сбросы стилей */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #2E8B57 0%, #3CB371 100%);
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+  padding: 30px;
+  background: linear-gradient(135deg, #2E8B57 0%, #3CB371 100%);
+}
+
+/* ===== ЗАГОЛОВОК ===== */
+.app-header {
+  text-align: center;
+  color: white;
+  margin-bottom: 50px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.app-header h1 {
+  font-size: 3em;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+}
+
+.app-header p {
+  font-size: 1.4em;
+  opacity: 0.9;
+}
+
+.stage {
+  background: #F5F5DC;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+  margin-bottom: 40px;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stage h2 {
+  text-align: center;
+  color: #2E8B57;
+  margin-bottom: 40px;
+  font-size: 2em;
+}
+
+.button {
+  padding: 15px 35px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 1.1em;
+}
+.button:hover {
+  transform: scale(1.05);
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.option-card {
+  border: 3px solid #DEB887;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #FFF8DC;
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.option-card:hover {
+  border-color: #2E8B57;
+}
+.option-card.selected {
+  border-color: #228B22;
+  background: #F0FFF0;
+  transform: scale(1.02);
+}
+
+.option-image {
+  margin-bottom: 20px;
+  flex-shrink: 0;
+  position: relative;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.option-real-image {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border: 4px solid #DEB887;
+  object-fit: cover;
+  transition: all 0.3s ease;
+}
+
+.option-card:hover .option-real-image {
+  border-color: #2E8B57;
+  transform: scale(1.1);
+}
+
+.option-card.selected .option-real-image {
+  border-color: #228B22;
+  box-shadow: 0 0 0 4px rgba(34, 139, 34, 0.3);
+}
+
+.image-placeholder {
+  width: 250px;
+  height: 250px;
+  background: linear-gradient(45deg, #2E8B57, #3CB371);
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 3em;
+  font-weight: bold;
+  border: 4px solid #DEB887;
+}
+
+.option-real-image:not([src]),
+.option-real-image[src=""],
+.option-real-image[src*="undefined"] {
+  display: none;
+}
+
+.option-real-image:not([src]) + .image-placeholder,
+.option-real-image[src=""] + .image-placeholder,
+.option-real-image[src*="undefined"] + .image-placeholder {
+  display: flex;
+}
+
+.option-card h3 {
+  margin: 15px 0;
+  color: #2E8B57;
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+.option-select-indicator {
+  color: #8FBC8F;
+  font-size: 1em;
+  margin-top: 15px;
+  font-weight: 500;
+}
+
+.option-card.selected .option-select-indicator {
+  color: #228B22;
+  font-weight: bold;
+}
+
+/* Кнопка голосования */
+.vote-button {
+  display: block;
+  margin: 0 auto;
+  background: linear-gradient(45deg, #228B22, #2E8B57);
+  color: white;
+  padding: 18px 40px;
+  font-size: 1.2em;
+}
+
+.vote-button:hover {
+  box-shadow: 0 8px 20px rgba(34, 139, 34, 0.4);
+}
+
+/* ===== ЭКРАН РЕЗУЛЬТАТОВ ===== */
+.results-summary {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 20px;
+  background: #FFF8DC;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.results-summary p {
+  font-size: 1.3em;
+  margin: 0;
+  color: #2E8B57;
+  font-weight: 500;
+}
+
+.back-to-vote-button {
+  background: #2E8B57;
+  color: white;
+  padding: 12px 25px;
+  font-size: 1em;
+  border-radius: 25px;
+}
+
+.back-to-vote-button:hover {
+  background: #228B22;
+}
+
+/* Список результатов */
+.results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.result-item {
+  border: 2px solid #DEB887;
+  border-radius: 15px;
+  padding: 25px 30px;
+  background: #FFF8DC;
+  transition: all 0.3s ease;
+}
+
+.result-item.winner {
+  border-color: #DAA520;
+  background: linear-gradient(135deg, #FFF8DC, #F5F5DC);
+  box-shadow: 0 8px 25px rgba(218, 165, 32, 0.3);
+  transform: scale(1.02);
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.result-header h3 {
+  margin: 0;
+  color: #2E8B57;
+  font-size: 1.4em;
+  font-weight: 600;
+}
+
+.vote-count {
+  font-weight: bold;
+  color: #2E8B57;
+  font-size: 1.2em;
+}
+
+/* Прогресс-бар */
+.percentage-bar {
+  width: 100%;
+  height: 45px;
+  background: #DEB887;
+  border-radius: 22px;
+  overflow: hidden;
+  position: relative;
+  margin: 15px 0;
+}
+
+.percentage-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2E8B57, #228B22);
+  border-radius: 22px;
+  transition: width 1s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 20px;
+  min-width: 80px;
+}
+
+.percentage-text {
+  color: white;
+  font-weight: bold;
+  font-size: 1em;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.winner-badge {
+  text-align: center;
+  margin-top: 15px;
+  padding: 8px 20px;
+  background: #DAA520;
+  color: #2E8B57;
+  border-radius: 20px;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 1.1em;
+}
+
+/* Кнопка сброса */
+.reset-button {
+  display: block;
+  margin: 0 auto;
+  background: #CD5C5C;
+  color: white;
+}
+
+.reset-button:hover {
+  background: #B22222;
+  box-shadow: 0 5px 15px rgba(205, 92, 92, 0.3);
+}
